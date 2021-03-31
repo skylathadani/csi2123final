@@ -75,7 +75,7 @@ String sql = "";
 //resultSet2.close();
 String allgood="Oops your booking did not go through";
 Statement statement3=connection.createStatement();
-sql ="INSERT INTO finalproject.booking (roomid,date,customerid,chainid) VALUES (" + roomid + ",'" + staydate + "'," + custid + ",(Select chainid from finalproject.room where roomid = " + roomid + "))" ;
+sql ="INSERT INTO finalproject.booking (status,roomid,date,customerid,chainid) VALUES ('rented'," + roomid + ",'" + staydate + "'," + custid + ",(Select chainid from finalproject.room where roomid = " + roomid + "))" ;
 System.out.println(sql);
 statement3.executeUpdate(sql);
 
@@ -107,6 +107,9 @@ while(result.next()){
 	<p><b>Hotel Chain id:</b>
    	<%= result.getString("chainid")%>
 	</p>
+	<p><b>Status:</b>
+   	<%= result.getString("status")%>
+	</p>
 	
 		<%
 		 
@@ -132,6 +135,7 @@ e.printStackTrace();
 
      <input type="submit" name="button" onclick="document.pressed=this.value" value="Go Back Home">
         </form>
+
 
 
    </body>

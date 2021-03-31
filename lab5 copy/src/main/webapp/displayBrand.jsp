@@ -79,6 +79,11 @@ e.printStackTrace();
 %>
 </table>
 
+<form name="myform" form action="NewFile.jsp" method="GET">
+
+     <input type="submit" name="button" onclick="document.pressed=this.value" value="Go Back Home">
+        </form>
+
 
    </body>
 </html>

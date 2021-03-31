@@ -90,7 +90,7 @@ e.printStackTrace();
 </table>
 
 
-<form action="room_booking_process.jsp" method="GET">
+<form action="rent_room_booking_processing.jsp" method="GET">
 CustomerID: <input type="text" name="customerid" value=<%=custid%> />
 roomid: <input type="text" name="roomid" />
 date of stay (yyyy-mm-dd): <input type="text" name="staydate" value=<%=staydate%>/>
@@ -101,7 +101,5 @@ date of stay (yyyy-mm-dd): <input type="text" name="staydate" value=<%=staydate%
 
      <input type="submit" name="button" onclick="document.pressed=this.value" value="Go Back Home">
         </form>
-
-
    </body>
 </html>

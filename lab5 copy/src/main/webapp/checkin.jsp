@@ -13,17 +13,9 @@
 
 
 
-<form action="customer_processing.jsp" method="GET">
-Full Name: <input type="text" name="name">
+<form action="checkinprocessing.jsp" method="GET">
+Booking id: <input type="text" name="bookingid">
 <br />
-email: <input type="text" name="email" />
-SIN: <input type="text" name="sin" />
-phone: <input type="text" name="phone" />
-Today's date written (yyyy-mm-dd): <input type="text" name="staydate" />
-Your street name and number written (street 1): <input type="text" name="street" />
-Your city: <input type="text" name="city" />
-Your country: <input type="text" name="country" />
-Your postal code: <input type="text" name="postal" />
 <input type="submit" value="Submit" />
 </form>
 
@@ -32,7 +24,6 @@ Your postal code: <input type="text" name="postal" />
 
      <input type="submit" name="button" onclick="document.pressed=this.value" value="Go Back Home">
         </form>
-
 
    </body>
 </html>

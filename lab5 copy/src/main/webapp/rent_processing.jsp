@@ -125,7 +125,7 @@ e.printStackTrace();
    <%= request.getParameter("postal")%>
 </p>
 
- <form action="bookroom.jsp" method="GET">
+ <form action="rentroom.jsp" method="GET">
 
 Customerid: <input type="text" name="custid" />
 Stay Date: (yyyy-mm-dd): <input type="text" name="staydate" />
@@ -134,12 +134,10 @@ Number of people in room: <input type="text" name="capacity" />
 <input type="submit" value="Submit" />
 </form>
 
-
 <form name="myform" form action="NewFile.jsp" method="GET">
 
      <input type="submit" name="button" onclick="document.pressed=this.value" value="Go Back Home">
         </form>
-
 
 
    </body>

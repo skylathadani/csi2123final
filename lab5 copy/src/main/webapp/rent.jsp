@@ -13,7 +13,7 @@
 
 
 
-<form action="customer_processing.jsp" method="GET">
+<form action="rent_processing.jsp" method="GET">
 Full Name: <input type="text" name="name">
 <br />
 email: <input type="text" name="email" />
@@ -31,8 +31,5 @@ Your postal code: <input type="text" name="postal" />
 <form name="myform" form action="NewFile.jsp" method="GET">
 
      <input type="submit" name="button" onclick="document.pressed=this.value" value="Go Back Home">
-        </form>
-
-
-   </body>
+        </form></body>
 </html>

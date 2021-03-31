@@ -37,13 +37,9 @@ String phone ="";
 String email ="";
 String staydate = "";
 
-String custid = request.getParameter("customerid");
 
 
-
-roomid = request.getParameter("roomid");
-
-staydate = request.getParameter("staydate");
+String bookingid = request.getParameter("bookingid");
 
 
 
@@ -73,30 +69,20 @@ String sql = "";
 //String customerid = resultSet2.getString(0);
 //statement2.close();
 //resultSet2.close();
-String allgood="Oops your booking did not go through";
+String allgood="Booking information";
 Statement statement3=connection.createStatement();
-sql ="INSERT INTO finalproject.booking (roomid,date,customerid,chainid) VALUES (" + roomid + ",'" + staydate + "'," + custid + ",(Select chainid from finalproject.room where roomid = " + roomid + "))" ;
-System.out.println(sql);
+sql = "Update finalproject.booking set status = 'rented' Where bookingid = "+ bookingid;
 statement3.executeUpdate(sql);
 
-sql = "SELECT * FROM finalproject.booking ORDER BY bookingid DESC LIMIT 1";
+sql = "SELECT booking.bookingid, booking.customerid, booking.roomid,booking.date,booking.chainid,booking.status, customer.full_name, customer.phone, customer.email, customer.sin FROM finalproject.booking Inner Join finalproject.customer on booking.customerid=customer.customerid Where bookingid = "+ bookingid;
 
 ResultSet result = statement3.executeQuery(sql);
 
-while(result.next()){
-	
-	if(result.getString("customerid").equals(custid)){
-		allgood="Your booking went through";
-	}
-	
-		
+while(result.next()){		
 		%>
 	<h1><%= allgood%></h1>
 	<p><b>Booking id:</b>
    	<%= result.getString("bookingid")%>
-	</p>
-	<p><b>CustomerID:</b>
-   	<%= result.getString("customerid")%>
 	</p>
 	<p><b>room picked:</b>
    	<%= result.getString("roomid")%>
@@ -106,6 +92,26 @@ while(result.next()){
 	</p>
 	<p><b>Hotel Chain id:</b>
    	<%= result.getString("chainid")%>
+	</p>
+	<p><b>Status:</b>
+   	<%= result.getString("status")%>
+	</p>
+	
+	<h2>Customer info</h2>
+	<p><b>CustomerID:</b>
+   	<%= result.getString("customerid")%>
+	</p>
+	<p><b>Customer name:</b>
+   	<%= result.getString("full_name")%>
+	</p>
+	<p><b>Customer phone number:</b>
+   	<%= result.getString("phone")%>
+	</p>
+	<p><b>Customer email:</b>
+   	<%= result.getString("email")%>
+	</p>
+	<p><b>Customer sin:</b>
+   	<%= result.getString("sin")%>
 	</p>
 	
 		<%
@@ -127,6 +133,7 @@ connection.close();
 e.printStackTrace();
 }
 %>
+
 
 <form name="myform" form action="NewFile.jsp" method="GET">
 
