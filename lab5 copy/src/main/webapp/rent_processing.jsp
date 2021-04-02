@@ -27,7 +27,7 @@ e.printStackTrace();
 
 Connection connection = null;
 Statement statement = null;
-ResultSet resultSet = null;
+//ResultSet resultSet = null;
 String roomid = "";
 String date = "";
 String customerName = "";
@@ -87,7 +87,7 @@ while(result2.next()){
 }
 
 statement.close();
-resultSet.close();
+result2.close();
 connection.close();
 
 %>
@@ -127,9 +127,10 @@ e.printStackTrace();
 
  <form action="rentroom.jsp" method="GET">
 
-Customerid: <input type="text" name="custid" />
-Stay Date: (yyyy-mm-dd): <input type="text" name="staydate" />
-Number of people in room: <input type="text" name="capacity" />
+Customerid: <input type="text" name="custid" required/>
+Stay Date: (yyyy-mm-dd): <input type="text" name="staydate" required />
+Number of Nights: <input type="text" name="nights" required/>
+Number of people in room: <input type="text" name="capacity" required />
 
 <input type="submit" value="Submit" />
 </form>

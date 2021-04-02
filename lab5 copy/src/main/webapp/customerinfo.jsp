@@ -17,13 +17,13 @@
 Full Name: <input type="text" name="name">
 <br />
 email: <input type="text" name="email" />
-SIN: <input type="text" name="sin" />
-phone: <input type="text" name="phone" />
-Today's date written (yyyy-mm-dd): <input type="text" name="staydate" />
+SIN written like (123123123): <input type="text" name="sin" />
+phone written like (1112223334): <input type="text" name="phone" />
+Today's date written (yyyy-mm-dd): <input type="text" name="date" />
 Your street name and number written (street 1): <input type="text" name="street" />
 Your city: <input type="text" name="city" />
 Your country: <input type="text" name="country" />
-Your postal code: <input type="text" name="postal" />
+Your postal code written like (E3E3E3): <input type="text" name="postal" />
 <input type="submit" value="Submit" />
 </form>
 

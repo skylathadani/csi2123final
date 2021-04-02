@@ -35,8 +35,8 @@ String sin = "";
 
 String phone ="";
 String email ="";
-String staydate = "";
-String custid = "";
+String staydate ="";
+String custid ="";
 
 
 customerName = request.getParameter("name");
@@ -49,7 +49,7 @@ phone = request.getParameter("phone");
 
 roomid = request.getParameter("roomid");
 
-staydate = request.getParameter("staydate");
+date = request.getParameter("date");
 String street = request.getParameter("street");
 String city = request.getParameter("city");
 String country = request.getParameter("country");
@@ -64,7 +64,7 @@ String postal = request.getParameter("postal");
 try{ 
 connection = DriverManager.getConnection("jdbc:postgresql://web0.site.uottawa.ca:15432/group_b07_g25", "sthad060", "Luna$pinx123");
 statement=connection.createStatement();
-String sql ="INSERT INTO finalproject.customer (full_name, sin, date_of_registration,phone,email,customer_address) VALUES ('" + customerName + "'," + sin + ",'2021-03-30'," + phone + ",'" + email + "',('" + street + "','" +  city + "','" + country + "','" + postal +"'))" ;
+String sql ="INSERT INTO finalproject.customer (full_name, sin, date_of_registration,phone,email,customer_address) VALUES ('" + customerName + "'," + sin + ",'"+date+"'," + phone + ",'" + email + "',('" + street + "','" +  city + "','" + country + "','" + postal +"'))" ;
 
 System.out.println(sql);
 statement.executeUpdate(sql);
@@ -73,6 +73,8 @@ sql = "Select finalproject.customer.customerid from finalproject.customer where 
 ResultSet result2=statement2.executeQuery(sql);
 %>
 <p><b>CustomerID Please write down this value for next step:</b>
+If there is no value below, an error occurred while making your account.
+Please try again
 
 </p>
 
@@ -81,7 +83,7 @@ ResultSet result2=statement2.executeQuery(sql);
 while(result2.next()){
 %>
 
-<h3><%=result2.getString("customerid") %></h3>
+<h3>Your Customer id:<%=result2.getString("customerid") %></h3>
 
 <%
 }
@@ -126,10 +128,12 @@ e.printStackTrace();
 </p>
 
  <form action="bookroom.jsp" method="GET">
+ <h1>Please fill out this form to proceed to rooms available</h1>
 
-Customerid: <input type="text" name="custid" />
-Stay Date: (yyyy-mm-dd): <input type="text" name="staydate" />
-Number of people in room: <input type="text" name="capacity" />
+Customerid: <input type="text" name="custid" required/>
+Date you would like to stay: (yyyy-mm-dd): <input type="text" name="staydate" required/>
+How many nights are you staying: <input type="number" min = "1" name="nights" required/>
+Number of people in room: <input type="text" name="capacity" required/>
 
 <input type="submit" value="Submit" />
 </form>

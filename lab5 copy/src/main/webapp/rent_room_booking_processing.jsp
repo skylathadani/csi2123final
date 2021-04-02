@@ -38,7 +38,7 @@ String email ="";
 String staydate = "";
 
 String custid = request.getParameter("customerid");
-
+String nights = request.getParameter("nights");
 
 
 roomid = request.getParameter("roomid");
@@ -75,7 +75,7 @@ String sql = "";
 //resultSet2.close();
 String allgood="Oops your booking did not go through";
 Statement statement3=connection.createStatement();
-sql ="INSERT INTO finalproject.booking (status,roomid,date,customerid,chainid) VALUES ('rented'," + roomid + ",'" + staydate + "'," + custid + ",(Select chainid from finalproject.room where roomid = " + roomid + "))" ;
+sql ="INSERT INTO finalproject.booking (status,roomid,date,customerid,chainid,checkoutdate) VALUES ('rented'," + roomid + ",'" + staydate + "'," + custid + ",(Select chainid from finalproject.room where roomid = " + roomid + "),TO_DATE('" + staydate + "','YYYY-MM-DD') +" + nights +")" ;
 System.out.println(sql);
 statement3.executeUpdate(sql);
 

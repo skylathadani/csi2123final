@@ -21,6 +21,7 @@ String password = "Luna$pinx123";
 String custid = request.getParameter("custid");
 String staydate = request.getParameter("staydate");
 String capacity = request.getParameter("capacity");
+String nights = request.getParameter("nights");
 
 try {
 Class.forName(driverName);
@@ -47,13 +48,15 @@ ResultSet resultSet = null;
 <td><b>ac</b></td>
 <td><b>fridge</b></td>
 <td><b>hotel address</b></td>
+<td><b>star rating</b></td>
 </tr>
 
 <%
 try{ 
 connection = DriverManager.getConnection("jdbc:postgresql://web0.site.uottawa.ca:15432/group_b07_g25", "sthad060", "Luna$pinx123");
 statement=connection.createStatement();
-String sql ="SELECT room.roomid, room.price, room.view, room.extendable, (room.amenities).tv, (room.amenities).ac, (room.amenities).fridge, hotelchain.hotel_chain_address from finalproject.room Inner Join finalproject.hotelchain on room.chainid=hotelchain.chainid Where room.isavailable = 'True' and roomid not in (Select roomid from finalproject.booking where date = '" +staydate+ "') AND capacity = " + capacity;
+String sql ="SELECT room.roomid, room.price, room.view, room.extendable, (room.amenities).tv, (room.amenities).ac, hotelchain.rating, (room.amenities).fridge, hotelchain.hotel_chain_address from finalproject.room Inner Join finalproject.hotelchain on room.chainid=hotelchain.chainid Where room.isavailable = 'True' and roomid not in (Select roomid from finalproject.booking where booking.date >= '" +staydate+ "' and checkoutdate <= ( TO_DATE('" + staydate +"', 'YYYY-MM-DD') + " +nights+ ")) AND capacity = " + capacity;
+
 
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
@@ -70,6 +73,7 @@ while(resultSet.next()){
 <td><%=resultSet.getString(6) %></td>
 <td><%=resultSet.getString(7) %></td>
 <td><%=resultSet.getString("hotel_chain_address") %></td>
+<td><%=resultSet.getString("rating") %></td>
 
 
 </tr>
@@ -89,11 +93,13 @@ e.printStackTrace();
 %>
 </table>
 
-
+<h2>Please fill out this form to book a reservation</h2>
+<h3>If successful, a confirmation will show on the next page</h3>
 <form action="room_booking_process.jsp" method="GET">
-CustomerID: <input type="text" name="customerid" value=<%=custid%> />
-roomid: <input type="text" name="roomid" />
-date of stay (yyyy-mm-dd): <input type="text" name="staydate" value=<%=staydate%>/>
+CustomerID: <input type="text" name="customerid" value=<%=custid%> required/>
+roomid: <input type="text" name="roomid" required/>
+date of stay (yyyy-mm-dd): <input type="text" name="staydate" value=<%=staydate%> required />
+Number of Nights (please remove /): <input type="text" name="nights" required value=<%=nights%> required/>
 <input type="submit" value="Submit" />
 </form>
 
